@@ -1,4 +1,3 @@
-import { StatusBar } from 'expo-status-bar';
 
 import React from "react";
 import PropTypes from "prop-types";
@@ -34,7 +33,7 @@ export default class ToDoApp extends React.Component {
     this.list = [...this.state.list];
   }
 
-  componentWillUpdate(nextProps, nextState) {
+  UNSAFE_(nextProps, nextState) {
     this.doneList = [];
     this.list = [...nextState.list];
   }
@@ -44,7 +43,7 @@ export default class ToDoApp extends React.Component {
         <View id="list" style={styles.widgetUl}>
           <View style={styles.header}>
             <Text style={(styles.textHd, styles.App)} lassName="title">
-              My to do list{" "}
+              Saads to do list{" "}
             </Text>
           </View>
         </View>
@@ -148,7 +147,7 @@ class ToDoList extends React.Component {
     super();
     this.state = { value: props.item, checked: false };
   }
-  componentWillReceiveProps(nextProps) {
+  UNSAFE_(nextProps) {
     if (nextProps.item !== this.props.item)
       this.setState({ ...this.state, value: nextProps.item, checked: false });
   }
@@ -171,7 +170,7 @@ class ToDoList extends React.Component {
       <View id="list" style={styles.widgetUl}>
         <View
           className="main"
-          style={styles.main}
+          style={styles.main }
           style={{ flex: 11, flexBasis: 250, flexDirection: "row" }}
         >
           {Platform.OS === "android" ? (
@@ -192,7 +191,7 @@ class ToDoList extends React.Component {
     );
   }
 
-  componentWillUnmount() {}
+  UNSAFE_() {}
 }
 const styles = StyleSheet.create({
   App: {
