@@ -16,7 +16,7 @@ import {
   ScrollView
 } from "react-native";
 
-const defaultList = ["Get up in the morning", "Brush my teeth"];
+const defaultList = [""];
 
 export default class ToDoApp extends React.Component {
   constructor(props) {
@@ -43,7 +43,7 @@ export default class ToDoApp extends React.Component {
         <View id="list" style={styles.widgetUl}>
           <View style={styles.header}>
             <Text style={(styles.textHd, styles.App)} lassName="title">
-              Saads to do list{" "}
+              Insurance Verification{" "}
             </Text>
           </View>
         </View>
@@ -52,37 +52,34 @@ export default class ToDoApp extends React.Component {
             <TextInput
               style={styles.input}
               ref={ref => (this.newItem = ref)}
-              placeholder="Add a new task..."
+              placeholder="First Name"
+            />
+            <TextInput
+              style={styles.input}
+              ref={ref => (this.newItem = ref)}
+              placeholder="Last Name"
+            />
+            <TextInput
+              style={styles.input}
+              ref={ref => (this.newItem = ref)}
+              placeholder="DOB"
+            />
+            <TextInput
+              style={styles.input}
+              ref={ref => (this.newItem = ref)}
+              placeholder="Insurance ID"
+            />
+            <TextInput
+              style={styles.input}
+              ref={ref => (this.newItem = ref)}
+              placeholder="Group ID"
             />
           </View>
-          <View className="button add" style={{ flex: 1 }}>
-            <TouchableOpacity
-              onPress={this._handleAddItem}
-              title="Add"
-              style={styles.button}
-            >
-              <Text style={styles.textBt}>Add </Text>
-            </TouchableOpacity>
-          </View>
-          <View className="button reset" style={{ flex: 1 }}>
-            <TouchableOpacity
-              onPress={this._handleResetList}
-              title="Reset"
-              style={styles.button}
-            >
-              <Text style={styles.textBt}>Reset </Text>
-            </TouchableOpacity>
-          </View>
+          
+          
         </View>
         {this.state.list.map((value, i) => {
-          return (
-            <ToDoList
-              key={i}
-              item={value}
-              removeItem={this._handleUpdateDoneList}
-              id={i}
-            />
-          );
+          
         })}
         <View id="list" style={styles.widgetUl}>
           <TouchableOpacity
@@ -90,48 +87,17 @@ export default class ToDoApp extends React.Component {
             title="Remove"
             style={styles.buttonRemove}
           >
-            <Text style={styles.textBt}>Remove </Text>
+            <Text style={styles.textBt}>Submit </Text>
           </TouchableOpacity>
         </View>
       </ScrollView>
     );
   }
-  _handleAddItem = () => {
-    let newItem = this.newItem._lastNativeText;
-    if (newItem !== "") {
-      LayoutAnimation.configureNext(LayoutAnimation.Presets.spring);
-      this.setState({ list: [...this.state.list, newItem] });
-      this.newItem.clear();
-    }
-  };
+  
 
-  _handleResetList = () => {
-    this.setState({ list: defaultList });
-  };
+  
 
-  _handleUpdateDoneList = id => {
-    let checkIfInDoneList = this.doneList.filter(function(val) {
-      return val === id;
-    });
-    if (checkIfInDoneList === undefined || checkIfInDoneList.length === 0) {
-      // add to list
-      this.doneList.push(id);
-    } else {
-      //delete from list
-      this.doneList = this.doneList.filter(function(val) {
-        return val !== id;
-      });
-    }
-  };
-
-  _handleRemoveDoneItems = e => {
-    this.doneList.sort((a, b) => a - b);
-    for (var i = this.doneList.length - 1; i >= 0; i--)
-      this.list.splice(this.doneList[i], 1);
-    LayoutAnimation.configureNext(LayoutAnimation.Presets.spring);
-    this.setState({ list: [...this.list] });
-    this.doneList = [];
-  };
+  
 }
 ToDoApp.propTypes = {
   list: PropTypes.array
@@ -212,7 +178,7 @@ const styles = StyleSheet.create({
   header: {
     flexBasis: 250,
     flex: 1,
-    padding: 10
+    padding: 20
   },
   footer: {
     flexBasis: 250,
